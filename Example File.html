@@ -1,0 +1,2514 @@
+<script>
+angular.module('gdg', [])
+    .run(function ($compile) {
+
+        var html = '<div my-directive="param"></div>'; // || document.body;
+
+        var linkingFn = $compile(html);
+
+    });
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+angular.module('gdg', [])
+    .run(function ($compile) {
+
+        var html = '<div my-directive="param"></div>'; // || document.body;
+
+        var linkingFn = $compile(html);
+
+        // ....
+
+        var elem = linkingFn($scope);
+
+    });
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+angular.module('gdg', [])
+    .run(function ($compile) {
+
+        var html = '<div my-directive="param"></div>'; // || document.body;
+
+        var linkingFn = $compile(html);
+
+        // ....
+
+        var elem1 = linkingFn($scope1);
+        var elem2 = linkingFn($scope2);
+
+    });
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+angular.module('gdg', [])
+    .directive('myDirective', function () {
+        return {
+            // ...
+        };
+    })
+
+    .run(function ($compile) {
+
+        var html = '<div my-directive="param">...</div>'; // || document.body;
+
+        var linkingFn = $compile(html);
+
+        // ....
+
+        var elem = linkingFn($scope);
+
+        // change the scope, with 2-way data binding
+        $scope.$apply('param = "Hey!"');
+
+    });
+</script>
+
+
+
+
+
+
+
+
+
+
+<script>
+angular.module('gdg', [])
+    .config(function ($compileProvider) {
+        $compileProvider.directive('myDirective', function () {
+            return {
+                // ...
+            };
+        });
+    })
+
+    .run(function ($compile) {
+
+        var html = '<div my-directive="param"></div>'; // || document.body;
+
+        var linkingFn = $compile(html);
+
+        // ....
+
+        var elem = linkingFn($scope);
+
+        // change the scope, with 2-way data binding
+        $scope.$apply('param = "Hey!"');
+
+    });
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+angular.module('gdg', [])
+    .directive('myDirective', ...)
+    .run(function ($compile) {
+
+        var html = '<div my-directive="param"></div>'; // || document.body;
+
+        var linkingFn = $compile(html);
+
+        // ....
+
+        var elem = linkingFn($scope);
+
+
+    });
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div my-directive="param1" your-directive="param2"></div>
+
+<script>
+    var attrs = collectAttributes(elem);
+    var directives = collectDirectives(attrs);
+
+    directives.sort(byPriority); // [yourDirective, myDirective]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    directive.scope; // true || {...}
+
+
+
+
+
+
+
+    directive.transclusion; // true || 'element'
+
+
+
+
+
+
+
+    directive.template; // '<div>' || fn
+    directive.templateUrl; // 'http://' || fn
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    directives.map(
+        (directive) => directive.compile(elem, attrs)
+    );
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    var linkFns = directives.map(
+        (directive) => directive.compile(elem, attrs)
+    );
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    directive.replace; // true
+
+    directive.template;
+
+
+
+
+
+
+
+
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// explain better
+directive.terminal; // true
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+gdgModule.directive('terminalDir', function ($compile) {
+    return {
+        priority: 1001,
+        terminal: true,
+        compile: function (elem) {
+            elem.attrs('otherDir', 'value');
+            $compile(elem, null, 1000);
+        }
+    }
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div my-directive></div>
+
+
+<my-directive param1="value"></my-directive>
+
+
+<div class="my-directive: value;"></div>
+
+
+<!-- directive: my-directive value -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+    
+
+directive.restrict: "EACM", // default: 'A'
+
+// E = Element
+// A = Attribut
+// C = Class
+// M = coMment
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+directive.restrict.indexOf("E");
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+directive.restrict: "ACME",
+
+
+directive.restrict: "ECMAscript",
+
+
+directive.restrict: "CAMEL 🐪",
+
+
+directive.restrict: "MACE Windu",
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// For learning purposes only
+directive.restrict: "Jeff. Your Mother is so fAt! She should take Care of her body more. It's worrying me, seriously.",
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</script>
+
+
+
+
+
+
+
+
+
+
+
+<div>
+    Hello {{ name }}    
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- Error, browser complains, not valid value -->
+<svg>
+    <circle cx="{{ circle.x }}"></circle>
+</svg>
+
+<!-- Everyone's happy -->
+<svg>
+    <circle ng-attr-cx="{{ circle.x }}"></circle>
+</svg>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+var html = '<div my-directive="param"></div>'; // || document.body;
+
+var linkingFn = $compile(html);
+
+// ....
+
+var elem = linkingFn($scope);
+
+
+
+
+
+
+
+var linkFns = directives.map(
+    (directive) => directive.compile(elem, attrs)
+);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+directive.compile: function () {
+    return {
+        pre: function () {
+
+        },
+        post: function () {
+
+        }
+    };
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+directive.compile: function () {
+    return function postLink() {
+
+    };
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+directive.link: function postLink() {
+
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+directive.link: {
+    pre: function () {
+
+    },
+    post: function () {
+
+    }
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+directive.link: function postLink(scope, elem, attrs, controller, transcludeFn) {
+
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// link to article
+directive.scope: true;
+scope = scope.$new(); // child scope
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+directive.scope: {};
+scope = scope.$new(true); // isolated scope
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+scope: {
+    'type': '@'
+}
+
+// <my-input type="{{ input.type }}" />
+
+// behind the scenes
+attrs.$observe('type', function (value) {
+    directiveScope.type = value; // always a string
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+scope: {
+    'onDateChange': '&'
+}
+
+// <my-input on-date-change="updatePrice(date)" type="date" />
+
+// behind the scenes
+parseFn = $parse(attrs.onDateChange);
+
+directiveScope.onDateChange = function (locals) {
+    return parseFn(parentScope, locals);
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+scope: {
+    'options': '='
+}
+
+// <my-input options="input.collection" type="select2" />
+
+// behind the scenes
+parentScope.$watch(attrs.options, function (value) {
+    directiveScope.options = value;
+});
+
+directiveScope.$watch('options', function (value) {
+    $parse(attrs.options).assign(value);
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+directive.link: function postLink(scope, elem, attrs, controller, transcludeFn) {
+
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// handle booleans
+attrs.$set(name, value); 
+
+// no dirty checking
+attrs.$observe(key, fn);
+
+// Animations
+attrs.$addClass(classVal);
+attrs.$removeClass(classVal);
+attrs.$updateClass(newClasses, oldClasses);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// you just need this
+// angular has animations
+$animate.enter(...);
+$animate.leave(...);
+$animate.move(...);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+directive.link: function postLink(scope, elem, attrs, controller, transcludeFn) {
+
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+myDirective.transclude: true;
+
+myDirective.template:
+"<h1>My Directive</h1> " +
+"<div ng-transclude></div>";
+
+</script>
+
+
+<!-- User HTML -->
+<div my-directive>
+    <p>Outside {{ value }}</p>
+</div>
+
+
+<!-- Final -->
+<div my-directive>
+    <h1>My Directive</h1>
+    <div ng-transclude> <p>Outside {{ value }}</p> </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+directive.transclude: true;
+
+directive.link: function postLink(scope, elem, attrs, controller, transcludeFn) {
+
+    var childScope = scope.$new();
+    transcludeFn(childScope, function (content) {
+        elem.append(content);
+    });
+
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+directive.transclude: true;
+
+directive.link: function postLink(scope, elem, attrs, controller, transcludeFn) {
+    transcludeFn(function (content) {
+        elem.append(content);
+    });
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+directive.transclude: 'element';
+
+directive.link: function postLink(scope, elem, attrs, controller, transcludeFn) {
+    transcludeFn(function (content) {
+        elem.after(content);
+    });
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// Anchor example: 
+// <!-- ngSwitchWhen: settings -->
+
+
+
+
+
+
+
+
+
+
+
+</script>
+
+
+
+<!-- ngRepeat item in colleciton -->
+<div ng-repeat="item in collection">
+    {{ $index }}
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dialog>
+
+    <dialog-header>
+        <i class="fa fa-close" ng-click="dialog.close()"></i>
+    </dialog-header>
+
+    <dialog-content>...</dialog-content>
+
+    <dialog-footer>
+        <dialog-button type="confirm">Affirmative</dialog-button>
+    </dialog-footer>
+
+</dialog>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<input type="text" 
+    auto-complete="data.collection" 
+    ng-model="data.userInput"
+/>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<select mutliple size="3">
+    <option value="1">One</option>
+    <option value="2">Two</option>
+    <option value="3">Three</option>
+    <option value="4">Four</option>
+    <option value="5">Five</option>
+</select>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+
+select.selectedIndex;
+select.selectedOptions; // [...options]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// ng-controller="ControlleurDeDirectiveDynamic"
+directive.controller: function ($http, $timeout, ...) {
+
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+directive.controller: function ($scope, $element, $attrs, $transclude, ...) {
+
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+myDirective.controller: 'MyDirectiveCtrl';
+
+gdgModule.controller('MyDirectiveCtrl', function ($scope, $transclude, $timeout) {
+
+});
+
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div my-directive other-directive></div>
+
+<script>
+
+myDirective.controller: function () {
+    this.myApi = function() {};
+};
+
+
+
+otherDirective.require: 'myDirective'
+otherDirective.link: function (scope, elem, attrs, myDirectiveCtrl) {
+    myDirectiveCtrl.myApi();
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+myDirective.require: 'myDirective'
+myDirective.link: function (scope, elem, attrs, myDirectiveCtrl) {
+    myDirectiveCtrl.myApi();
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+otherDirective.require: ['myDirective', 'ngModel']
+otherDirective.link: function (scope, elem, attrs, ctrls) {
+    myDirectiveCtrl = ctrls[0];
+    ngModelCtrl = ctrls[1];
+};
+
+
+
+
+
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- require: 'myDirective' -->
+<div my-directive other-directive></div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- require: '^myDirective' -->
+<div my-directive>
+    <div other-directive></div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- require: '^^myDirective' -->
+<div my-directive>
+    <div my-directive other-directive></div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+    require: '?myDirective';
+</script
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<input type="text" ng-model="data.userInput" />
+
+<script>
+    ngModelCtrl.$validate();
+
+    ngModelCtrl.$setViewValue();
+
+    ngModelCtrl.$modelValue;
+
+    ngModelCtrl.$render();
+
+    // ...
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+    myDirective.controller: 'MyDirectiveCtrl';
+    myDirective.controllerAs: 'myDirective'
+</script>
+
+
+<div my-directive>
+    <div ng-click="myDirective.myApi()"></div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<svg ... > 
+    <circle ng-repeat="circle in circles" ... ></circle>
+</svg> 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Thank you for listening
+
+@rodyhaddad
+
+
+
+
+<script>
+
+
+                                . . . .
+                                ,`,`,`,`,
+          . . . .               `\`\`\`\;
+          `\`\`\`\`,            ~|;!;!;\!
+           ~\;\;\;\|\          (--,!!!~`!       .
+          (--,\\\===~\         (--,|||~`!     ./
+           (--,\\\===~\         `,-,~,=,:. _,//
+            (--,\\\==~`\        ~-=~-.---|\;/J,
+             (--,\\\((```==.    ~'`~/       a |
+               (-,.\\('('(`\\.  ~'=~|     \_.  \
+                  (,--(,(,(,'\\. ~'=|       \\_;>
+                    (,-( ,(,(,;\\ ~=/        \
+                    (,-/ (.(.(,;\\,/          )
+                     (,--/,;,;,;,\\         ./------.
+                       (==,-;-'`;'         /_,----`. \
+               ,.--_,__.-'                    `--.  ` \
+              (='~-_,--/        ,       ,!,___--. \  \_)
+             (-/~(     |         \   ,_-         | ) /_|
+             (~/((\    )\._,      |-'         _,/ /
+              \\))))  /   ./~.    |           \_\;            Valkyrie 
+           ,__/////  /   /    )  /
+            '===~'   |  |    (, <.
+                     / /       \. \
+                   _/ /          \_\
+                  /_!/            >_\
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
